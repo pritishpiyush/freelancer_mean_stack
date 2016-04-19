@@ -36,14 +36,11 @@ passport.use('facebook', passConfig.facebookStrategy);
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var journey = require('./routes/journey');
-var city = require('./routes/city');
 
 app.use('/api/jobs', require('./routes/job'));
-app.use('/api/services', require('./routes/service'));
+
 app.use('/api/users', users);
-app.use('/api/cities', city);
-app.use('/api', journey);
+
 app.use('*', routes);
 
 

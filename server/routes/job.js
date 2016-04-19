@@ -6,7 +6,7 @@ var router = express.Router();
 var Job = require('../models/job');
 router.get('/', function (req, res) {
     Job.find({})
-        .populate('city service')
+
         .exec(function (err, jobs) {
             if (err) {
                 return res.json({error: err});

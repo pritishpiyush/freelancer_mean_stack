@@ -5,8 +5,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var JobSchema = new Schema({
-    service: {type: String, required: true, ref: 'Service'},
-    city: {type: String, required: true, ref: 'City'},
+    service: {type: String, required: true},
+    city: {type: String, required: true},
     duration: {type: Number, required: true},
     person: {type: Number, required: true},
     description: {type: String, required: true},
