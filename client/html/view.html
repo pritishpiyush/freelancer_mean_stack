@@ -1,6 +1,31 @@
-<div class="panel panel-primary column col-lg-3 col-md-4 col-sm-6" ng-repeat="job in jobs">
+<div class="panel panel-primary column col-lg-6 col-md-4 col-sm-6" ng-repeat="job in jobs">
+
     <div class="panel-heading">
-        <h3 class="panel-title">{{job.service}}</h3>
+            <h3 class="panel-title">{{job.service}}</h3>
+
     </div>
-    <div class="panel-body"> {{job.city}} <br><br>{{job.begin}}<br>{{job.description}}<br>{{job.locality}}<br>{{job.price_min}}<br>{{job.price_max}}
-        <br>{{job.duration}} <br>{{job.person}}</div> </div>
+    <a style="text-decoration: none;" href="/jobs/{{job._id}}">
+
+
+    <div class="panel-body">
+        City: {{job.city}} <br>
+        Starting Date: {{job.begin}}<br>
+        Description: {{job.description}}<br>
+        Locality: {{job.locality}}<br>
+        Min. Price: {{job.price_min}}<br>
+        Max Price: {{job.price_max}}<br>
+        Duration (in days) : {{job.duration}} <br>
+        No. of person : {{job.person}}<br>
+
+        <div ng-controller="TwitterController">
+
+            Negotiate : <input type="text" ng-model="tweet"/> <input type="button" value="Comment"
+                                                                     ng-click="addTweet()">
+
+            <div ng-repeat="item in tweets">
+                {{item}}
+            </div>
+        </div>
+    </div>
+    </a>
+</div>

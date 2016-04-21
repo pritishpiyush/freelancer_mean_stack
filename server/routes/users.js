@@ -34,4 +34,16 @@ router.get('/user', function (req, res) {
         res.json({error: 'Not Logged In!'});
     }
 });
+/* Demo login */
+router.get('/dlogin', function(req, res) {
+    User.findOne({
+        _id: '57160325e8c4b5c410b41dc6'
+    }, function(err, user) {
+        if (err || !user) {
+            return res.send('False');
+        }
+        req.logIn(user, function(err) {});
+        res.json(req.user);
+    });
+});
 module.exports = router;
