@@ -1,5 +1,30 @@
 var app = angular.module('myApp', ['ngResource', 'ngRoute']);
 
+app.factory('socket', function($rootScope) {
+    var socket = io.connect();
+    return {
+        on: function(eventName, callback) {
+            socket.on(eventName, function() {
+                var args = arguments;
+                $rootScope.$apply(function() {
+                    callback.apply(socket, args);
+                });
+            });
+        },
+        emit: function(eventName, data, callback) {
+            socket.emit(eventName, data, function() {
+                var args = arguments;
+                $rootScope.$apply(function() {
+                    if (callback) {
+                        callback.apply(socket, args);
+                    }
+                });
+            })
+        }
+    };
+});
+
+
 app.factory('Job', function ($resource) {
         return $resource('/api/jobs/:jobid', null, {
             'update': {method: 'PUT'}
@@ -45,6 +70,9 @@ app.controller('JobController', function ($scope, $http, $routeParams, Job, Comm
             })
     }
 
+
+
+
     // Moment js
     $scope.timeInWords = function(date) {
         return moment(date).fromNow();
@@ -65,8 +93,12 @@ app.controller('JobController', function ($scope, $http, $routeParams, Job, Comm
 });
 
 
-app.controller('ViewController', function ($scope, $http, Job) {
+app.controller('ViewController', function ($scope, $http, Job, socket) {
     $scope.jobs = Job.query();
+
+    socket.on('job', function(job){
+        $scope.jobs.push(job);
+    });
 });
 
 
