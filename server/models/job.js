@@ -14,6 +14,7 @@ var JobSchema = new Schema({
     price_max: {type: Number, required: true},
     locality:  {type: String, required: true},
     begin: {type: Date, required: true},
+    user: {type: String, required: true, ref: 'User'},
     created_at: {type: Date, default: Date.now()}
 });
 

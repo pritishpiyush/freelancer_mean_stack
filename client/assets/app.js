@@ -7,11 +7,19 @@ app.factory('Job', function ($resource) {
     }
 );
 
+app.factory('Comment', function ($resource) {
+        return $resource('/api/jobs/:jid/comments', null, {
+            'update': {method: 'PUT'}
+        });
+    }
+);
 
-app.controller('JobController', function ($scope, $http, $routeParams, Job) {
+
+app.controller('JobController', function ($scope, $http, $routeParams, Job, Comment) {
     $scope.jobObject = {};
     if ($routeParams.jobid) {
         $scope.jobSingle = Job.get({jobid: $routeParams.jobid});
+        $scope.comments = Comment.query({jid: $routeParams.jobid});
     }
     $scope.postJob = function () {
         var newJob = new Job();
@@ -35,8 +43,23 @@ app.controller('JobController', function ($scope, $http, $routeParams, Job) {
             function (err) {
                 console.log(err);
             })
+    }
 
+    // Moment js
+    $scope.timeInWords = function(date) {
+        return moment(date).fromNow();
+    };
 
+    $scope.postComment = function () {
+        var newComment = new Comment();
+        newComment.comment = $scope.commentBody;
+        newComment.$save({jid: $routeParams.jobid}, function (comment) {
+            console.log(comment);
+            if (!comment.error) {
+                $scope.commentBody = '';
+                $scope.comments.unshift(comment)
+            }
+        });
     }
 
 });
@@ -44,17 +67,6 @@ app.controller('JobController', function ($scope, $http, $routeParams, Job) {
 
 app.controller('ViewController', function ($scope, $http, Job) {
     $scope.jobs = Job.query();
-});
-
-
-app.controller('TwitterController', function ($scope) {
-    $scope.tweets = [];
-    $scope.tweet = '';
-    $scope.addTweet = function () {
-        $scope.tweets.push($scope.tweet);
-        $scope.tweet = '';
-    }
-
 });
 
 
