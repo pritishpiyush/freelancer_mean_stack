@@ -15,6 +15,7 @@ var JobSchema = new Schema({
     locality:  {type: String, required: true},
     begin: {type: Date, required: true},
     user: {type: String, required: true, ref: 'User'},
+    image: {type: String},
     created_at: {type: Date, default: Date.now()}
 });
 

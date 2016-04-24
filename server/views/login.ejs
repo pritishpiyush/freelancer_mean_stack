@@ -1,110 +1,129 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myApp">
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>Freelancer</title>
     <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
-    <title>Loginp</title>
-    <link href="/assets/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width">
 
-    <style>
-        @media (min-width: 768px) {
-            .omb_row-sm-offset-3 div:first-child[class*="col-"] {
-                margin-left: 25%;
-            }
-        }
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap-theme.min.css">
 
-        .omb_login .omb_authTitle {
-            text-align: center;
-            line-height: 300%;
-        }
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
-        .omb_login .omb_socialButtons a {
-            color: white; // In yourUse @body-bg
-        opacity:0.9;
-        }
-        .omb_login .omb_socialButtons a:hover {
-            color: white;
-            opacity:1;
-        }
-        .omb_login .omb_socialButtons .omb_btn-facebook {background: #3b5998;}
-        .omb_login .omb_socialButtons .omb_btn-twitter {background: #00aced;}
-        .omb_login .omb_socialButtons .omb_btn-google {background: #c32f10;}
+    <!-- Google Webfonts -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600%7CPT+Serif:400,400italic' rel='stylesheet' type='text/css'>
 
+    <!-- Styles -->
+    <link rel="stylesheet" href="/assets/css/styles-bluegreen.css" id="theme-styles">
 
-        .omb_login .omb_loginOr {
-            position: relative;
-            font-size: 1.5em;
-            color: #aaa;
-            margin-top: 1em;
-            margin-bottom: 1em;
-            padding-top: 0.5em;
-            padding-bottom: 0.5em;
-        }
-        .omb_login .omb_loginOr .omb_hrOr {
-            background-color: #cdcdcd;
-            height: 1px;
-            margin-top: 0px !important;
-            margin-bottom: 0px !important;
-        }
-        .omb_login .omb_loginOr .omb_spanOr {
-            display: block;
-            position: absolute;
-            left: 50%;
-            top: -0.6em;
-            margin-left: -1.5em;
-            background-color: white;
-            width: 3em;
-            text-align: center;
-        }
+    <!--[if lt IE 9]>
 
-        .omb_login .omb_loginForm .input-group.i {
-            width: 2em;
-        }
-        .omb_login .omb_loginForm  .help-block {
-            color: red;
-        }
+    <![endif]-->
+
+    <script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/assets/js/jquery.min.js"><\/script>')</script>
+
+    <script src="/assets/js/cookie-js.js" type="text/javascript"></script>
+   <!--Font for the overlay screens-->
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
+
+    <script src="/assets/js/moment.js"></script>
+    <script src="/assets/js/angular.js"></script>
+    <script src="/assets/js/angular-resource.js"></script>
+    <script src="/assets/js/angular-route.js"></script>
+    <script src="/assets/js/app.js"></script>
+    <script src="/assets/js/socketio.js"></script>
 
 
-        @media (min-width: 768px) {
-            .omb_login .omb_forgotPwd {
-                text-align: right;
-                margin-top:10px;
-            }
-        }
-    </style>
 </head>
 
 <body>
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
-<div class="container">
+<!-- Colorswitcher -->
 
+<header>
+    <div class="widewrapper masthead">
+        <div class="container">
+            <a href="index.html" id="logo">
+                Freelancer
+                <!--Use the following line instead if you want to use an image logo-->
+                <!--<img src="img/tales-logo.png" alt="Tales Blog">-->
+            </a>
 
-    <div class="omb_login">
-        <h3 class="omb_authTitle">Login </h3>
-        <div class="row omb_row-sm-offset-3 omb_socialButtons">
-            <div class="col-xs-6 col-sm-4">
-                <a href="/api/users/auth/facebook" class="btn btn-lg btn-block omb_btn-facebook">
-                    <i class="fa fa-facebook visible-xs"></i>
-                    <span class="hidden-xs">Facebook</span>
+            <div id="mobile-nav-toggle" class="pull-right">
+                <a href="about.html#" data-toggle="collapse" data-target=".tales-nav .navbar-collapse">
+                    <i class="fa fa-bars"></i>
                 </a>
             </div>
 
+            <nav class="pull-right tales-nav">
+                <div class="collapse navbar-collapse">
+                    <ul class="nav nav-pills navbar-nav">
+
+                        <li>
+                            <a href="/">
+                                Jobs
+                            </a>
+
+                        </li>
+                        <li>
+                            <a href="/postjob">Post &nbspJob</a>
+                        </li>
+                        <li class="active">
+                            <a href="/login">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
         </div>
-
-
-
     </div>
 
 
+</header>
 
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 tales-superblock">
+            <h2>Login</h2>
+            <hr>
+            <div class="social-icons clearfix">
+
+
+                <a href="/api/users/auth/facebook" class="social-icon color-three">
+                    <div class="inner-circle" ></div>
+                    <i class="fa fa-facebook"></i>
+                </a>
+
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
 </div>
 
 
+<footer>
+    <div class="widewrapper copyright">
+        <div class="container">
+            <!--Note: Feel free to remove or change this link as you please. A link to HackerThemes is not required by any means-->
+            Designed by <a href="#" rel="nofollow">ABCD</a>
+        </div>
+    </div>
+</footer>
 
+
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/modernizr-custom.js"></script>
 </body>
+</html>
