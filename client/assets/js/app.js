@@ -96,6 +96,11 @@ app.controller('JobController', function ($scope, $http, $routeParams, Job, Comm
 app.controller('ViewController', function ($scope, $http, Job, socket) {
     $scope.jobs = Job.query();
 
+    // Moment js
+    $scope.timeInWords = function(date) {
+        return moment(date).fromNow();
+    };
+
     socket.on('job', function(job){
         $scope.jobs.push(job);
     });
