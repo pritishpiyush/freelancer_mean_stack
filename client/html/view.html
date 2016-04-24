@@ -1,0 +1,36 @@
+<div class="row">
+
+    <div class="col-md-6 col-sm-6" ng-repeat-start="job in jobs">
+        <article class="blog-teaser">
+            <header>
+                <img src="/assets/img/alljobs/{{job.service.replace(' ', '').toLowerCase()}}.jpg" width=100" alt="{{job.service}}">
+                <h3><a href="/jobs/{{job._id}}#top">{{job.service}}</a></h3>
+                <span class="meta">₹{{job.price_min}} - ₹{{job.price_max}}, {{job.city}}</span>
+                <hr>
+            </header>
+            <div class="body">
+                {{job.description}}<br>
+
+                <b>No. of person: </b>{{job.person}}<br>
+                <b>Locality: </b>{{job.locality}}<br>
+                <b>Starting: </b>{{timeInWords(job.begin)}}<br>
+                <b>Duration: </b>{{job.duration}}&nbspmonths <br>
+                <hr>
+                <img src="{{job.user.profile_pic}}" width=25" style="-webkit-border-radius: 20px;"/> &nbsp{{job.user.name}}
+            </div>
+            <div class="clearfix">
+            </div>
+        </article>
+    </div>
+    <div ng-repeat-end>
+        <div class="clear clearfix" ng-if="$index % 2 == 1">&nbsp;</div>
+    </div>
+</div>
+
+
+
+<div class="paging">
+    <a href="index.html#" class="newer"><i class="fa fa-long-arrow-left"></i> Newer</a>
+    <span>&bull;</span>
+    <a href="index.html#" class="older">Older <i class="fa fa-long-arrow-right"></i></a>
+</div>

@@ -8,7 +8,13 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var passConfig = require('./passport/config.js');
 
+
 var app = express();
+var io = require('socket.io')();
+app.io = io;
+
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -36,14 +42,11 @@ passport.use('facebook', passConfig.facebookStrategy);
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var journey = require('./routes/journey');
-var city = require('./routes/city');
 
-app.use('/api/jobs', require('./routes/job'));
-app.use('/api/services', require('./routes/service'));
+app.use('/api/jobs', require('./routes/job')(io));
+
 app.use('/api/users', users);
-app.use('/api/cities', city);
-app.use('/api', journey);
+
 app.use('*', routes);
 
 
